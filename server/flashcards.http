@@ -1,0 +1,10 @@
+POST http://localhost:3000/flashcard
+Content-Type: application/json
+
+{
+ "title": "Virtual DOM",
+ "description": "Estrutura utilizada pelo React para manipulação do DOM em memória. Permite a atualização do DOM real somente onde necessário, o que pode garantir uma melhor performance da aplicação."
+}
+######
+
+GET http://localhost:3000/flashcard

@@ -1,6 +1,7 @@
 import express from "express"
 import cors from "cors"
 import winston from "winston"
+import FlashcardsRouter from "./routes/flashcards.router.js"
 
 const app = express()
 
@@ -25,6 +26,14 @@ global.logger = winston.createLogger({
 
 app.use(express.json())
 app.use(cors())
+app.use("/flashcard", FlashcardsRouter)
+
+app.use((error, request, response, _next) => {
+  logger.error(`${request.method} ${request.baseUrl} - ${error.message}`);
+  response.status(400).send({
+    error: error.message,
+  });
+});
 
 const port = 3000
 
