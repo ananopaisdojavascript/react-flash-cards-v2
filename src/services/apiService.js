@@ -1,29 +1,28 @@
-import { get, create, edit, eliminate } from "./httpService";
+import httpService from "./httpService";
 
-const URL = "http://localhost:3000/flashcard";
-
-export const getAllFlahscards = async () => {
-  const allFlashcards = await get(`${URL}`)
+// Obtenção de dados do backend
+const getAllFlashcards = async () => {
+  const allFlashcards = await httpService.read("/flashcard")
   return allFlashcards
 }
 
-// export const createFlashcard = async (title, description) => {
-//   const newFlashcard = create(`${URL}`, {
-//     title,
-//     description
-//   })
-//   return newFlashcard
-// }
+const createFlashcard = async (title, description) => {
+  const newFlashcard = await httpService.createFlashcard("/flashcard", { title, description })
+  return newFlashcard
+}
 
-// export const updateFlashcard = async (flashcardId, title, description) => {
-//   const update = edit(`${URL}/${flashcardId}`, {
-//     flashcardId,
-//     title,
-//     description
-//   })
-//   return update
-// }
+const editFlashcard = async (flashcardId, title, description) => {
+  const flashcardEditing = await httpService.updateFlashcard("/flashcard", { flashcardId, title, description })
+  return flashcardEditing
+}
 
-// export const deleteFlashcard = async (flashcardId) => {
-//   await eliminate(`${URL}/${flashcardId}`)
-// }
+const deleteFlashcard = async (flashcardId) => {
+  await httpService.eliminateFlashcard(`/flashcard/${flashcardId}`)
+}
+
+export default {
+  getAllFlashcards,
+  createFlashcard,
+  editFlashcard,
+  deleteFlashcard
+}

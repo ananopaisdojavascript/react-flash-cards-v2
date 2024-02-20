@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import FlashcardsService from "../services/flashcards.service.js";
 
 const createFlashcard = async (request, response, next) => {

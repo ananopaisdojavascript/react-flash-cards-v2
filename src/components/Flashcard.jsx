@@ -4,7 +4,7 @@ export default function Flashcard({
   title = "Título",
   description = "Descrição",
   showTitle = true,
-  onToggle = null,
+  onToggle,
   id
 }) {
 

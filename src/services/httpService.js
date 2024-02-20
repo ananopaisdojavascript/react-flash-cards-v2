@@ -1,21 +1,34 @@
+// Importar a biblioteca axios
 import axios from "axios";
 
-export const get = async (url) => {
-  const { data } = await axios.get(url)
+const axiosInstance = axios.create({
+  baseURL: "http://localhost:3000",
+  timeout: 10000
+})
+
+// Função para obter os dados da API
+const read = async(url) => {
+  const { data } = await axiosInstance.get(url)
+  return data;
+}
+
+const createFlashcard = async(url, object) => {
+  const { data } = await axiosInstance.post(url, object)
   return data
 }
 
-export const create = async (url, object) => {
-  const { data } = await axios.post(url, object)
+const updateFlashcard = async(url, object) => {
+  const { data } = await axiosInstance.put(url, object)
   return data
 }
 
-export const edit = async (url, object) => {
-  const { data } = await axios.put(url, object)
-  return data
-}
+const eliminateFlashcard = async(id) => {
+  await axiosInstance.delete(`${id}`)
+} 
 
-export const eliminate = async (url) => {
-  const { data } = await axios.delete(url)
-  return data
+export default {
+  read,
+  createFlashcard,
+  updateFlashcard,
+  eliminateFlashcard
 }

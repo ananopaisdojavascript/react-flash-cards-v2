@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 import Flashcard from "../models/flashcard.model.js"
 
 const insertFlashcard = async (flashcard) => {
